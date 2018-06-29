@@ -19,7 +19,9 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
+if(process.env.NODE_ENV === "production"){
+  app.use(express.static("client/build"))
+}
 
 // Routing
 var articlesController = require("./server/controllers/article-controller");
