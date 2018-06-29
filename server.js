@@ -49,7 +49,16 @@ app.use(router);
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/nyt-react";
 
 // Connect to the Mongo DB
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, function(error) {
+  // Log any errors connecting with mongoose
+  if (error) {
+    console.error(error);
+  }
+  // Or log a success message
+  else {
+    console.log("mongoose connection is successful");
+  }
+});
 
 // Listen on the port
 app.listen(PORT, function() {
